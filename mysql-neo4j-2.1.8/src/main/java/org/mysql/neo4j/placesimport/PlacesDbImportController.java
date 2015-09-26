@@ -59,7 +59,47 @@ public class PlacesDbImportController {
 
 	@Transactional
     public RootNeo createGraphDb() {
-		RootNeo root = doImportRoot();
+		//RootNeo root = doImportRoot();
+		
+		RootNeo root = new RootNeo("1", "Root");
+		root.addLabel("_Root");
+		
+		AddressNeo address = new AddressNeo("1", "391 Callao Drive");
+		address.setPostalCode("34021");
+		address.addLabel("_Address");
+		addressRepo.save(address);
+		
+		CityNeo city = new CityNeo("1", "Toulouse");
+		city.addLabel("_City");
+		city.hasAddress(address);
+		cityRepo.save(city);
+		
+		CountryNeo country = new CountryNeo("1", "France");
+		country.addLabel("_Country");
+		country.hasCity(city);
+		countryRepo.save(country);
+		
+		root.isRoot(country);
+		
+		address = new AddressNeo("2", "939 Probolinggo Loop");
+		address.setPostalCode("4166");
+		address.addLabel("_Address");
+		addressRepo.save(address);
+		
+		city = new CityNeo("2", "A Corua (La Corua)");
+		city.addLabel("_City");
+		city.hasAddress(address);
+		cityRepo.save(city);
+		
+		country = new CountryNeo("2", "Spain");
+		country.addLabel("_Country");
+		country.hasCity(city);
+		countryRepo.save(country);
+		
+		root.isRoot(country);
+		
+		rootRepo.save(root);
+		
         return root;
 	}
 	
@@ -209,11 +249,11 @@ public class PlacesDbImportController {
     	if (address == null) throw new RuntimeException("Address not found.");
     	
 		AddressNeo addressNeo = new AddressNeo(generateIndex(address.getAddressId()), address.getAddress());
+		addressNeo.setPostalCode(address.getPostalCode());
 		addressNeo.addLabel("_Address");
 		//addressNeo.addLabel("Address");
 		System.out.println("new address: " + addressNeo);
 		
-		addressNeo.setPostalCode(address.getPostalCode());
 		addressRepo.save(addressNeo);
 		
 		/*
