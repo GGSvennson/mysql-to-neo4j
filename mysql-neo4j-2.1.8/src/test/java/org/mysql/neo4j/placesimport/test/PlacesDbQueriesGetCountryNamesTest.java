@@ -1,6 +1,8 @@
 package org.mysql.neo4j.placesimport.test;
 
-import org.mysql.neo4j.domain.RootNeo;
+import java.util.List;
+
+import org.mysql.neo4j.domain.CountryNeo;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.mysql.neo4j.placesimport.PlacesDbImportController;
 import org.mysql.neo4j.placesimport.PlacesDbQueries;
@@ -12,9 +14,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class PlacesImporterTest {
+public class PlacesDbQueriesGetCountryNamesTest {
 
-	public PlacesImporterTest() {
+	public PlacesDbQueriesGetCountryNamesTest() {
 		
 	}
 	
@@ -25,9 +27,9 @@ public class PlacesImporterTest {
     @AfterClass
     public static void tearDownClass() throws Exception {
     }
-	
-	@Test
-	public void testCreateDatabase() {
+    
+    @Test
+	public void testQueryDbGetCountryNames() {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 
 		GraphDatabaseService graphDatabase = ctx.getBean("graphDatabaseService", GraphDatabaseService.class);
@@ -35,10 +37,9 @@ public class PlacesImporterTest {
 		PlacesDbQueries queries = ctx.getBean("queries", PlacesDbQueries.class);
 		
 		PlacesImporter placesImporter = new PlacesImporter(graphDatabase, importer, queries);
-		RootNeo root = placesImporter.createDatabase();
-		assertNotNull(root);
+		List<String> names = placesImporter.queryDbGetCountryNames();
+		assertTrue(!names.isEmpty());
 		
 		ctx.close();
 	}
-	
 }
