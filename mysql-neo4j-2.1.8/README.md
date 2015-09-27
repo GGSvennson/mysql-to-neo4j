@@ -9,6 +9,6 @@ Later, using Spring Data Neo4j repositories, I tried to query the database witho
 
 I will use JDBC for MySQL database and Spring Data Neo4j for Neo4j database, as mentioned before.
 
-The project includes corresponding JUnit unit test that so far and such it is implemented it returns success but you should understand that it is not valid.
+The project includes corresponding JUnit unit test that so far and such it is implemented it returns success but you should understand that it is not valid. The order of execution is first PlacesImporterTest to create the database and secondly PlacesDbQueries*Test in the order you want.
 
 So while this issue is corrected the project will not be completed successfully.
