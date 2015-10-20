@@ -10,15 +10,12 @@ import org.springframework.data.neo4j.repository.GraphRepository;
 
 public interface CountryNeoRepository extends GraphRepository<CountryNeo> {
 	
-	@Query("MATCH (n:CountryNeo) RETURN COLLECT(n.name) AS countries")
-	CountryNeoData findAllCountryNames();
+	@Query("MATCH (a)-[r {__type__:'RoleIsRoot'}]->(b) RETURN b")
+	public Iterable<CountryNeo> getAllCountries();
 	
-	@QueryResult
-    public class CountryNeoData {
-        Collection<String> countries = Collections.emptyList();
-        
-        public Collection<String> getCountries() {
-        	return countries;
-        }
-    }
+	@Query("MATCH (a)-[r {__type__:'RoleIsRoot'}]-(b) WHERE b.id={0} RETURN b")
+	public CountryNeo getCountryFromId(String id);
+	
+	@Query("MATCH (a)-[r {__type__:'RoleIsRoot'}]->(b) WHERE b.name={0} RETURN b")
+	public CountryNeo getCountryFromName(String name);
 }

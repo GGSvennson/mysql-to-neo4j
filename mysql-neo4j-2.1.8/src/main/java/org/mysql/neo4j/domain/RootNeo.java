@@ -17,8 +17,12 @@ public class RootNeo extends Place {
 		
 	}
 	
-	public RootNeo(String id, String name) {
-		super(id, name);
+	public RootNeo(String name) {
+		super(name, null);
+	}
+	
+	public RootNeo(String name, String id) {
+		super(name, id);
 	}
 
 	public Set<CountryNeo> getCountries() {

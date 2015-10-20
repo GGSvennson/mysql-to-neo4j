@@ -38,7 +38,7 @@ public class PlacesImporter {
 		return root;
 	}
 	
-	public List<CountryNeo> queryDbGetCountries() {
+	public List<CountryNeo> queryDbGetAllCountries() {
 		Transaction tx = graphDatabase.beginTx();
 		List<CountryNeo> countries = new ArrayList<CountryNeo>();
 		try {
@@ -55,20 +55,33 @@ public class PlacesImporter {
 		return countries;
 	}
 	
-	public List<String> queryDbGetCountryNames() {
+	public CountryNeo queryDbGetCountryById(String id) {
 		Transaction tx = graphDatabase.beginTx();
-		List<String> names = new ArrayList<String>();
+		CountryNeo country = null;
 		try {
 			System.out.println();System.out.println();
-	        System.out.println("List of country names.-");
-	        names = queries.findAllCountryNames();
-	        for(String name: names) {
-	        	System.out.println(name);
-	        }
+	        System.out.println("Get country by id.-");
+	        country = queries.findCountryById(id);
+	        System.out.println(country);
 	    	tx.success();
 		} finally {
 			tx.close();
 		}
-		return names;
+		return country;
+	}
+	
+	public CountryNeo queryDbGetCountryByName(String name) {
+		Transaction tx = graphDatabase.beginTx();
+		CountryNeo country = null;
+		try {
+			System.out.println();System.out.println();
+	        System.out.println("Get country by name.-");
+	        country = queries.findCountryByName(name);
+	        System.out.println(country);
+	    	tx.success();
+		} finally {
+			tx.close();
+		}
+		return country;
 	}
 }

@@ -14,6 +14,7 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <spring.version>4.0.0.RELEASE</spring.version>
         <neo4j.version>2.1.8</neo4j.version>
+        <sdn.version>3.1.2.RELEASE</sdn.version>
         <logback.version>1.0.13</logback.version>
 	    <slf4j.version>1.7.10</slf4j.version>
 	</properties>
@@ -57,22 +58,22 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-neo4j</artifactId>
-            <version>3.1.2.RELEASE</version>
+            <version>${sdn.version}</version>
         </dependency>
         <dependency>
 		    <groupId>org.springframework.data</groupId>
 		    <artifactId>spring-data-neo4j-rest</artifactId>
-		    <version>3.1.2.RELEASE</version>
+		    <version>${sdn.version}</version>
         </dependency>
         <dependency>
 		    <groupId>org.springframework.data</groupId>
 		    <artifactId>spring-data-neo4j-tx</artifactId>
-		    <version>3.1.2.RELEASE</version>
+		    <version>${sdn.version}</version>
 		</dependency>
         <dependency>
 		    <groupId>org.springframework.data</groupId>
 		    <artifactId>spring-data-neo4j-aspects</artifactId>
-		    <version>3.1.2.RELEASE</version>
+		    <version>${sdn.version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.springframework.data</groupId>

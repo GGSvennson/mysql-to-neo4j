@@ -23,8 +23,12 @@ public class AddressNeo extends Place {
 	public AddressNeo() {		
 	}
 	
-	public AddressNeo(String id, String name) {
-		super(id, name);
+	public AddressNeo(String name) {
+		super(name, null);
+	}
+	
+	public AddressNeo(String name, String id) {
+		super(name, id);
 	}
 
 	public String getPostalCode() {

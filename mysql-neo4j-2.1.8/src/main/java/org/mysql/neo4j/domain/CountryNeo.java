@@ -25,8 +25,12 @@ public class CountryNeo extends Place {
     public CountryNeo() {
     }
 
-    public CountryNeo(String id, String name) {
-        super(id, name);
+    public CountryNeo(String name) {
+        super(name, null);
+    }
+    
+    public CountryNeo(String name, String id) {
+        super(name, id);
     }
 
     public Set<CityNeo> getCities() {

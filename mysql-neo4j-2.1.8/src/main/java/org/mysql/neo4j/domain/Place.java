@@ -10,31 +10,40 @@ import org.springframework.data.neo4j.support.index.IndexType;
 @NodeEntity
 public class Place {
 
-	@GraphId Long nodeId;
+	@GraphId
+	protected Long nodeId;
 	
-    @Indexed(unique=true)
-    String id;
-    
-    @Indexed(indexType=IndexType.FULLTEXT, indexName = "place")
-    String name;
+	@Indexed(unique=true)
+    private String id;
+	
+    @Indexed
+    private String name;
     
     @Labels 
     private Collection<String> labels = Collections.emptySet(); 
 
     
-    protected Place(String id, String name) {
-        this.id = id;
+    protected Place(String name, String id) {
         this.name = name;
+        this.id = id;
     }
 
     protected Place() {
     }
 
-    public String getId() {
-        return id;
-    }
+    public Long getNodeId() {
+		return nodeId;
+	}
 
-    public String getName() {
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getName() {
         return name;
     }
 
@@ -70,7 +79,7 @@ public class Place {
 
     @Override
     public String toString() {
-        return String.format("%s [%s]", name, id);
+        return String.format("%s (id=%s) [nodeId=%s]", name, id, nodeId);
     }
 
 }

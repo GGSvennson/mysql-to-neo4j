@@ -15,11 +15,12 @@ public class PlacesMainApp {
 		
 		PlacesImporter placesImporter = new PlacesImporter(graphDatabase, importer, queries);
 		
-		placesImporter.createDatabase();
-		//placesImporter.queryDbGetCountries();
-		//placesImporter.queryDbGetCountryNames();
+		//placesImporter.createDatabase();
+		//placesImporter.queryDbGetRoot();
+		placesImporter.queryDbGetAllCountries();
+		placesImporter.queryDbGetCountryById("1");
+		placesImporter.queryDbGetCountryByName("Spain");
 
 		ctx.close();
 	}
-
 }

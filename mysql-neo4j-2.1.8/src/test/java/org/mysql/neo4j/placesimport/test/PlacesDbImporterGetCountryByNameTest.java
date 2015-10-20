@@ -1,22 +1,20 @@
 package org.mysql.neo4j.placesimport.test;
 
-import java.util.List;
+import static org.junit.Assert.assertNotNull;
 
-import org.mysql.neo4j.domain.CountryNeo;
-import org.neo4j.graphdb.GraphDatabaseService;
-import org.mysql.neo4j.placesimport.PlacesDbImportController;
-import org.mysql.neo4j.placesimport.PlacesDbQueries;
-import org.mysql.neo4j.placesimport.PlacesImporter;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mysql.neo4j.domain.CountryNeo;
+import org.mysql.neo4j.placesimport.PlacesDbImportController;
+import org.mysql.neo4j.placesimport.PlacesDbQueries;
+import org.mysql.neo4j.placesimport.PlacesImporter;
+import org.neo4j.graphdb.GraphDatabaseService;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import static org.junit.Assert.*;
+public class PlacesDbImporterGetCountryByNameTest {
 
-public class PlacesDbQueriesGetCountryNamesTest {
-
-	public PlacesDbQueriesGetCountryNamesTest() {
+	public PlacesDbImporterGetCountryByNameTest() {
 		
 	}
 	
@@ -29,7 +27,7 @@ public class PlacesDbQueriesGetCountryNamesTest {
     }
     
     @Test
-	public void testQueryDbGetCountryNames() {
+	public void testQueryDbGetCountryByName() {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 
 		GraphDatabaseService graphDatabase = ctx.getBean("graphDatabaseService", GraphDatabaseService.class);
@@ -37,8 +35,8 @@ public class PlacesDbQueriesGetCountryNamesTest {
 		PlacesDbQueries queries = ctx.getBean("queries", PlacesDbQueries.class);
 		
 		PlacesImporter placesImporter = new PlacesImporter(graphDatabase, importer, queries);
-		List<String> names = placesImporter.queryDbGetCountryNames();
-		assertTrue(!names.isEmpty());
+		CountryNeo country = placesImporter.queryDbGetCountryByName("Spain");
+		assertNotNull(country);
 		
 		ctx.close();
 	}

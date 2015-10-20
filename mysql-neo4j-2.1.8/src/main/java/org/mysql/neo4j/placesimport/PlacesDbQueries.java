@@ -6,8 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.mysql.neo4j.domain.CountryNeo;
+import org.mysql.neo4j.domain.RootNeo;
 import org.mysql.neo4j.repository.*;
-import org.mysql.neo4j.repository.CountryNeoRepository.CountryNeoData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.neo4j.conversion.Result;
@@ -38,23 +38,25 @@ public class PlacesDbQueries {
     	
     }
     
+    public RootNeo findRoot() {
+    	return rootRepo.findOne(0L);
+    }
+    
     public List<CountryNeo> findAllCountries() {
-    	Result<CountryNeo> result = countryRepo.findAll();
+    	Iterable<CountryNeo> result = countryRepo.getAllCountries();
     	List<CountryNeo> list = new ArrayList<CountryNeo>();
-    	for(Iterator<CountryNeo> it = result.iterator(); it.hasNext(); ) {
+    	Iterator<CountryNeo> it = result.iterator();
+    	while(it.hasNext()) {
     		list.add(it.next());
     	}
     	return list;
     }
     
-    public List<String> findAllCountryNames() {
-    	CountryNeoData names = countryRepo.findAllCountryNames();
-    	Collection<String> collection = names.getCountries();
-    	
-    	List<String> list = new ArrayList<String>();
-    	for(Iterator<String> it = collection.iterator(); it.hasNext(); ) {
-    		list.add(it.next());
-    	}
-    	return list;
+    public CountryNeo findCountryById(String id) {
+    	return countryRepo.getCountryFromId(id);
+    }
+    
+    public CountryNeo findCountryByName(String name) {
+    	return countryRepo.getCountryFromName(name);
     }
 }
