@@ -1,9 +1,5 @@
 package org.mysql.neo4j.placesimport;
 
-import org.mysql.neo4j.repository.AddressNeoRepository;
-import org.mysql.neo4j.repository.CityNeoRepository;
-import org.mysql.neo4j.repository.CountryNeoRepository;
-import org.mysql.neo4j.repository.RootRepository;
 import org.mysql.neo4j.domain.AddressNeo;
 import org.mysql.neo4j.domain.CityNeo;
 import org.mysql.neo4j.domain.CountryNeo;
@@ -11,10 +7,7 @@ import org.mysql.neo4j.domain.RoleHasAddress;
 import org.mysql.neo4j.domain.RoleHasCity;
 import org.mysql.neo4j.domain.RoleIsRoot;
 import org.mysql.neo4j.domain.RootNeo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.data.neo4j.support.Neo4jTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;

@@ -15,8 +15,7 @@ public class PlacesMainApp {
 		
 		PlacesImporter placesImporter = new PlacesImporter(graphDatabase, importer, queries);
 		
-		//placesImporter.createDatabase();
-		//placesImporter.queryDbGetRoot();
+		placesImporter.createDatabase();
 		placesImporter.queryDbGetAllCountries();
 		placesImporter.queryDbGetCountryById("1");
 		placesImporter.queryDbGetCountryByName("Spain");
