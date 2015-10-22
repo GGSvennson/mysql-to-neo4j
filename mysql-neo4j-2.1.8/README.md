@@ -20,3 +20,5 @@ Later, using Spring Data Neo4j repositories, I query the database with success. 
 I will use JDBC for MySQL database and Spring Data Neo4j for Neo4j database, as mentioned before.
 
 The project includes corresponding JUnit unit test that so far and such it is implemented it returns a valid result. The order of execution is first PlacesImporterTest to create the database and secondly PlacesDbImporter*Test in the order you want.
+
+Since this is a test project, you can get the complete project on GitHub at <a href="https://github.com/GGSvennson/heartbreaker-annie/tree/master/heartbreaker-annie" target="_blank">heartbreaker-annie</a>
