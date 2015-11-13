@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   
   <groupId>org.mysql.neo4j</groupId>
-  <artifactId>mysql-neo4j-2.1.8</artifactId>
+  <artifactId>mysql-to-neo4j</artifactId>
   <version>1.0.0</version>
   
   <name>MySQL To Neo4j 2.1.8</name>
