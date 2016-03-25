@@ -49,6 +49,7 @@ public class PlacesDbQueries {
     	while(it.hasNext()) {
     		list.add(it.next());
     	}
+    	
     	return list;
     }
     
